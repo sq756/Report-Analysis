@@ -79,6 +79,16 @@ export const REVIEW_DATA: ReviewItem[] = [
 
   // CITATIONS
   {
+    id: 'ref4',
+    page: '16-17',
+    location: 'Bibliography Cross-Check',
+    issue: 'Uncited References (Orphaned Bibliography)',
+    suggestion: 'Detected several references in the bibliography that are never cited in the main text. Examples include: "Cai, Z. (2023)", "Carroll, M. P. (2022)", "Christensen, B. G. (2019)", and "Dialameh...". Action required: cite them in the text or remove them from the reference list.',
+    severity: Severity.MAJOR,
+    category: 'Citation',
+    status: 'open'
+  },
+  {
     id: 'ref1',
     page: '15-17',
     location: 'References Section',
