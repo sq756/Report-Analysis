@@ -9,7 +9,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Template text remaining: "[说明：介绍本项目的...]"',
     suggestion: 'Delete all instructional text in brackets throughout the document (also found on Page 10 and Page 14).',
     severity: Severity.CRITICAL,
-    category: 'Format'
+    category: 'Format',
+    status: 'open'
   },
   {
     id: 'c2',
@@ -18,7 +19,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Contextual Typo: "难以区分儿童" (Difficult to distinguish children)',
     suggestion: 'This is likely a typo for "难以区分不同噪声" (distinct noises) or similar. "Children" makes no sense in this context.',
     severity: Severity.CRITICAL,
-    category: 'Language'
+    category: 'Language',
+    status: 'open'
   },
   {
     id: 'c3',
@@ -27,7 +29,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Numbering Error: "(1) (1) 研究视角..."',
     suggestion: 'Remove the duplicate numbering. Change to "(1) 研究视角...".',
     severity: Severity.CRITICAL,
-    category: 'Format'
+    category: 'Format',
+    status: 'open'
   },
   
   // IMAGES
@@ -38,7 +41,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Figure Captions are in English ("FIG. 1. Variational quantum computing...")',
     suggestion: 'For a Chinese report, all figure captions MUST be in Chinese. English captions are only acceptable if the report is bilingual or if explicitly required, but titles like "FIG 1" should usually be "图 1".',
     severity: Severity.MAJOR,
-    category: 'Image'
+    category: 'Image',
+    status: 'open'
   },
   {
     id: 'i2',
@@ -47,7 +51,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Missing Image Citation',
     suggestion: 'This figure appears to be from a paper (likely Cerezo et al. or McClean et al.). You must add "图片改编自 [参考文献]" (Figure adapted from [Ref]) in the caption.',
     severity: Severity.MAJOR,
-    category: 'Image'
+    category: 'Image',
+    status: 'open'
   },
 
   // LANGUAGE (English Abstract)
@@ -58,7 +63,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Grammar: "In Variational quantum algorithms (VQAs) are among..."',
     suggestion: 'Remove "In". Start with "Variational Quantum Algorithms (VQAs) are among...".',
     severity: Severity.MAJOR,
-    category: 'Language'
+    category: 'Language',
+    status: 'open'
   },
   {
     id: 'l2',
@@ -67,7 +73,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Capitalization Inconsistency',
     suggestion: 'Standardize terms. "barren plateaus" vs "Barren Plateaus". "Variational Quantum Algorithms" should be title case when defined.',
     severity: Severity.MINOR,
-    category: 'Language'
+    category: 'Language',
+    status: 'open'
   },
 
   // CITATIONS
@@ -78,7 +85,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Metadata Junk in References',
     suggestion: 'Remove automated citation manager artifacts like "APS Link", "McDermott Lab", "ScienceDirect", "Grafiati", "Quantum Journal". These should not appear in a printed bibliography.',
     severity: Severity.MAJOR,
-    category: 'Citation'
+    category: 'Citation',
+    status: 'open'
   },
   {
     id: 'ref2',
@@ -87,7 +95,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Incomplete Reference',
     suggestion: '"arXiv:2412.xxxx" indicates a placeholder. Update with the actual number or check if it is published.',
     severity: Severity.MAJOR,
-    category: 'Citation'
+    category: 'Citation',
+    status: 'open'
   },
   {
     id: 'ref3',
@@ -96,7 +105,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Inconsistency between "et al." and "等"',
     suggestion: 'Ensure consistency. If writing in Chinese, prefer "Name 等 (Year)" or "Name et al. (Year)". Do not mix styles unless the specific template allows it.',
     severity: Severity.MINOR,
-    category: 'Citation'
+    category: 'Citation',
+    status: 'open'
   },
 
   // MATH / LOGIC
@@ -107,7 +117,8 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Missing Math Symbol (f)',
     suggestion: 'The OCR text shows "1/ 噪声". It implies the "f" (frequency) is missing or in a font that did not print/scan. Ensure it reads "1/f 噪声" in italics.',
     severity: Severity.MAJOR,
-    category: 'Logic'
+    category: 'Logic',
+    status: 'open'
   },
   {
     id: 'm2',
@@ -116,6 +127,7 @@ export const REVIEW_DATA: ReviewItem[] = [
     issue: 'Typo in variable',
     suggestion: '"sample estimate of ℓθ (p, O)" -> Should likely be "ρ" (rho) not "p".',
     severity: Severity.MINOR,
-    category: 'Logic'
+    category: 'Logic',
+    status: 'open'
   }
 ];

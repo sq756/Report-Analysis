@@ -1,13 +1,25 @@
 import React from 'react';
 import { ReviewItem, Severity } from '../types';
-import { AlertCircle, AlertTriangle, Info, CheckCircle2 } from 'lucide-react';
+import { AlertCircle, AlertTriangle, Info, CheckCircle2, Check } from 'lucide-react';
 
 interface IssueCardProps {
   item: ReviewItem;
+  onToggle?: () => void;
 }
 
-export const IssueCard: React.FC<IssueCardProps> = ({ item }) => {
+export const IssueCard: React.FC<IssueCardProps> = ({ item, onToggle }) => {
+  const isResolved = item.status === 'resolved';
+
   const getSeverityStyles = (severity: Severity) => {
+    if (isResolved) {
+      return {
+        border: 'border-slate-100',
+        bg: 'bg-slate-50 opacity-75',
+        badge: 'bg-slate-100 text-slate-400',
+        icon: <CheckCircle2 className="text-slate-400" size={20} />
+      };
+    }
+
     switch (severity) {
       case Severity.CRITICAL:
         return {
@@ -43,29 +55,57 @@ export const IssueCard: React.FC<IssueCardProps> = ({ item }) => {
   const styles = getSeverityStyles(item.severity);
 
   return (
-    <div className={`rounded-xl border ${styles.border} ${styles.bg} p-5 shadow-sm hover:shadow-md transition-shadow duration-300`}>
-      <div className="flex items-start justify-between mb-3">
+    <div className={`relative group rounded-xl border ${styles.border} ${styles.bg} p-5 shadow-sm transition-all duration-300 ${isResolved ? 'hover:opacity-100' : 'hover:shadow-md'}`}>
+      
+      {/* Resolve Button */}
+      {onToggle && (
+        <button 
+          onClick={onToggle}
+          className={`absolute top-5 right-5 flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${
+            isResolved 
+              ? 'bg-slate-200 text-slate-600 hover:bg-slate-300' 
+              : 'bg-white border border-slate-200 text-slate-500 hover:bg-green-50 hover:text-green-600 hover:border-green-200 shadow-sm'
+          }`}
+        >
+          {isResolved ? (
+            <><span>Undo</span></>
+          ) : (
+            <>
+              <Check size={14} />
+              <span>Mark Fixed</span>
+            </>
+          )}
+        </button>
+      )}
+
+      <div className="flex items-start justify-between mb-3 pr-24">
         <div className="flex items-center space-x-2">
           {styles.icon}
           <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide ${styles.badge}`}>
-            {item.severity}
+            {isResolved ? 'RESOLVED' : item.severity}
           </span>
-          <span className="text-xs font-mono text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200">
+          <span className="text-xs font-mono text-slate-500 bg-white/50 px-2 py-0.5 rounded border border-slate-200/50">
             Page {item.page}
           </span>
         </div>
-        <span className="text-xs text-slate-400 font-medium">{item.location}</span>
       </div>
       
-      <h3 className="text-slate-900 font-semibold mb-2">
-        {item.issue}
-      </h3>
-      
-      <div className="mt-3 bg-white/60 p-3 rounded-lg border border-slate-200/50">
-        <p className="text-sm text-slate-700 leading-relaxed">
-          <span className="font-bold text-slate-900 mr-1">Correction:</span>
-          {item.suggestion}
-        </p>
+      <div className={isResolved ? 'opacity-50 grayscale' : ''}>
+        <div className="flex justify-between">
+           <span className="text-xs text-slate-400 font-medium mb-1 block">{item.location}</span>
+        </div>
+        <h3 className={`text-slate-900 font-semibold mb-2 ${isResolved ? 'line-through text-slate-500' : ''}`}>
+          {item.issue}
+        </h3>
+        
+        {!isResolved && (
+          <div className="mt-3 bg-white/60 p-3 rounded-lg border border-slate-200/50">
+            <p className="text-sm text-slate-700 leading-relaxed">
+              <span className="font-bold text-slate-900 mr-1">Correction:</span>
+              {item.suggestion}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

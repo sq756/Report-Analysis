@@ -13,6 +13,7 @@ export interface ReviewItem {
   suggestion: string;
   severity: Severity;
   category: 'Format' | 'Language' | 'Logic' | 'Citation' | 'Image';
+  status: 'open' | 'resolved';
 }
 
 export interface Stats {
@@ -20,4 +21,5 @@ export interface Stats {
   majorCount: number;
   minorCount: number;
   totalIssues: number;
+  resolvedCount: number;
 }
